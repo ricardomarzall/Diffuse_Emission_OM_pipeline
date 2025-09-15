@@ -1,0 +1,17 @@
+# --- CONFIGURAÇÃO VENCEDORA (DO SEU TESTE QUE FUNCIONOU) ---
+# Usando os parâmetros que você validou para obter o resultado correto.
+
+CATALOG_NAME     temp_catalog.cat # Temporário, não importa para a imagem
+PARAMETERS_NAME  /net/ASTRO/ricardomarzall/Documentos/Diffuse_Emission_UV/Data_reduction/omdataprep/config_sextractor/default.param
+
+DETECT_TYPE      CCD
+
+# --- Parâmetros-chave que funcionaram para você ---
+DETECT_THRESH    1.5
+DETECT_MINAREA   5
+FILTER           N
+BACK_SIZE        64
+
+# Adicionamos esta linha para sermos explícitos, garantindo que o script sempre
+# crie a imagem com as fontes subtraídas.
+CHECKIMAGE_TYPE  SEGMENTATION

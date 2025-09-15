@@ -1,0 +1,9 @@
+X_IMAGE
+Y_IMAGE
+A_IMAGE
+B_IMAGE
+THETA_IMAGE
+FLUX_APER
+MAG_APER
+SNR_WIN      # Signal-to-Noise Ratio, essencial para selecionar boas fontes
+ELONGATION   # Alongamento, para ajudar a separar estrelas de galáxias
