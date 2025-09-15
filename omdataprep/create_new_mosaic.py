@@ -91,10 +91,7 @@ class Build_Mosaic:
     def create_new_mosaic(self):
         self.init_sas_environment()
         
-        # --- DETECÇÃO DE MODO ---
-        # =====================================================================================
-        #  LÓGICA FSIMAG AJUSTADA: Procura apenas por arquivos FIMAG que foram corrigidos
-        # =====================================================================================
+
         fsimag_files = glob.glob(os.path.join(self.directory, 'P*FIMAG*jpiter_filtred_rotated_WCS.FIT'))
         
         if fsimag_files:
@@ -166,7 +163,7 @@ class Build_Mosaic:
                         '-w', '1', '-V', '4'
                     ]
                     w('ommosaic', params).run()
-                    logging.info(f"SUCESSO! Mosaico '{output_name}' criado. 🎉")
+                    logging.info(f"SUCESSO! Mosaico '{output_name}' criado.")
                 except Exception as e:
                     logging.critical(f"ERRO CRÍTICO ao executar ommosaic no modo Mosaico: {e}")
                 finally:

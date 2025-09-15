@@ -153,23 +153,23 @@ def apply_segmentation_mask(diretorio_alvo, log_func=None):
     log_func("\n--- Aplicação de máscaras concluída. ---")
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Processador de imagens FITS para detecção e mascaramento de fontes.")
-    parser.add_argument("diretorio", help="O diretório alvo que contém as imagens FITS.")
-    parser.add_argument(
-        "tarefa", 
-        choices=['sextractor', 'mask', 'all'], 
-        help="A tarefa a ser executada: 'sextractor' para gerar mapas de segmentação, 'mask' para aplicar as máscaras, ou 'all' para executar ambas em sequência."
-    )
-     
-    args = parser.parse_args()
-    diretorio_alvo = args.diretorio
-    tarefa_escolhida = args.tarefa
-
-    if tarefa_escolhida == 'sextractor':
-        running_Sextractor(diretorio_alvo)
-    elif tarefa_escolhida == 'mask':
-        apply_segmentation_mask(diretorio_alvo)
-    elif tarefa_escolhida == 'all':
-        running_Sextractor(diretorio_alvo)
-        apply_segmentation_mask(diretorio_alvo)
+#if __name__ == "__main__":
+#    parser = argparse.ArgumentParser(description="Processador de imagens FITS para detecção e mascaramento de fontes.")
+#    parser.add_argument("diretorio", help="O diretório alvo que contém as imagens FITS.")
+#    parser.add_argument(
+#        "tarefa", 
+#        choices=['sextractor', 'mask', 'all'], 
+#        help="A tarefa a ser executada: 'sextractor' para gerar mapas de segmentação, 'mask' para aplicar as máscaras, ou 'all' para executar ambas em sequência."
+#    )
+#     
+#    args = parser.parse_args()
+#    diretorio_alvo = args.diretorio
+#    tarefa_escolhida = args.tarefa
+#
+#    if tarefa_escolhida == 'sextractor':
+#        running_Sextractor(diretorio_alvo)
+#    elif tarefa_escolhida == 'mask':
+#        apply_segmentation_mask(diretorio_alvo)
+#    elif tarefa_escolhida == 'all':
+#        running_Sextractor(diretorio_alvo)
+#        apply_segmentation_mask(diretorio_alvo)

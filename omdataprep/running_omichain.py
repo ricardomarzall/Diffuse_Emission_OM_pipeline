@@ -10,7 +10,6 @@ from astropy.io import fits
 import re
 from .mosaic_combiner import *
 from .omatt import *
-from .binning_class import *
 import logging
 from .SExtractor import running_Sextractor, apply_segmentation_mask
 from .check_fits import sincronizar_wcs_de_fits
@@ -143,18 +142,13 @@ class RunOmichain:
                         if self.run_commands_in_directory(work_dir, sas_file):
                             self.processed_observations.append(folder_name)
 
-                            # =======================================================================
-                            # INÍCIO DO BLOCO DE CÓDIGO MODIFICADO
-                            # =======================================================================
-
-                            # PASSO 1: Definir todos os padrões de arquivos que precisam de correção
                             patterns_to_find = [
                                 'P*FIMAG_0000.FIT', # Padrão para FSIMAG
                                 'P*IMAGE_0000.FIT', # Padrão para Mosaico (às vezes ocorre)
                                 'P*IMAGE_1000.FIT'  # Padrão para Mosaico (componentes)
                             ]
 
-                            # PASSO 2: Criar uma lista única com todos os arquivos encontrados
+
                             files_to_correct = []
                             for pattern in patterns_to_find:
                                 files_to_correct.extend(glob.glob(os.path.join(work_dir, pattern)))
@@ -165,7 +159,6 @@ class RunOmichain:
                             if not files_to_correct:
                                 self.log_message("Nenhum arquivo para correção de Júpiter foi encontrado (*FIMAG* ou *IMAGE*).")
 
-                            # PASSO 3: Iterar e corrigir cada arquivo encontrado
                             for file_path in files_to_correct:
                                 file_name = os.path.basename(file_path)
                                 try:
@@ -182,9 +175,6 @@ class RunOmichain:
                                 except Exception as e:
                                     self.log_message(f"Erro ao verificar ou corrigir {file_name}: {e}")
 
-                            # =======================================================================
-                            # FIM DO BLOCO DE CÓDIGO MODIFICADO
-                            # =======================================================================
                             
                         else:
                             self.error_observations.append(folder_name)                         
@@ -225,7 +215,6 @@ class RunOmichain:
                         except Exception as e:
                             self.log_message(f"Erro ao combinar os Mosaicos UVW1 e UVM2: {e}")
                                 
-                        # --- PASSO 1: Geração dos mapas de segmentação com SExtractor ---
                         try:
                             self.log_message("Iniciando geração de mapas de segmentação com SExtractor...")
                             running_Sextractor(work_dir, log_func=self.log_message)
@@ -233,7 +222,6 @@ class RunOmichain:
                         except Exception as e:
                             self.log_message(f"Erro ao rodar SExtractor: {e}")
 
-                        # --- PASSO 2: Aplicação da máscara de segmentação ---
                         try:
                             self.log_message("Iniciando aplicação de máscara de segmentação...")
                             apply_segmentation_mask(work_dir, log_func=self.log_message)
